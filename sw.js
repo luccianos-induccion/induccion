@@ -1,4 +1,4 @@
-const V='v2.7', CORE=['./','index.html','induccion.webmanifest','induccion-192.png','induccion-512.png'], VIDS=["v/almagro.bin", "v/avcol.bin", "v/caro.bin", "v/dubai.bin", "v/est5.bin", "v/inst.bin", "v/latas.bin", "v/obras.bin", "v/semana.bin", "v/six.bin", "v/squares.bin", "v/station.bin", "v/toreon.bin"], C='ind-'+V;
+const V='v3.0', CORE=['./','index.html','induccion.webmanifest','induccion-192.png','induccion-512.png'], VIDS=["v/almagro.bin", "v/avcol.bin", "v/caro.bin", "v/dubai.bin", "v/est5.bin", "v/inst.bin", "v/latas.bin", "v/obras.bin", "v/semana.bin", "v/six.bin", "v/squares.bin", "v/station.bin", "v/toreon.bin"], C='ind-'+V;
 self.addEventListener('install',e=>{e.waitUntil((async()=>{const c=await caches.open(C);await Promise.all(CORE.map(u=>c.add(u).catch(()=>{})));for(const u of VIDS){try{await c.add(u)}catch(_){}}self.skipWaiting()})())});
 self.addEventListener('activate',e=>{e.waitUntil((async()=>{for(const k of await caches.keys())if(k!==C)await caches.delete(k);await self.clients.claim()})())});
 self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET')return;const u=new URL(r.url);
